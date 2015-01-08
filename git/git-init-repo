@@ -1,0 +1,13 @@
+#!/bin/bash
+
+((!$#)) && echo No Git repository url specified, command cancelled! && exit 1
+
+touch README.md
+git init
+git add README.md
+git commit -m "Initialize repository."
+git remote add origin $1
+git push -u origin master
+git checkout -b develop
+git push -u origin develop
+

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+((!$#)) && echo No release tag specified, command cancelled! && exit 1
+
+git checkout develop
+git add -A
+git commit -m "$2"
+git push origin develop
+git checkout master
+git merge develop
+git tag $1 -m "Release $1"
+git push --tags origin master
